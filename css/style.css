@@ -37,7 +37,8 @@ img {
 
 .card {
   width: 117px;
-  height: 146px;
+  height: 146px;  
+  position: relative;
   background-color: #A7E9AF;
   border: 1px solid #99CEA8;
   border-radius: 5px;
@@ -45,4 +46,23 @@ img {
   align-items: center;
   justify-content: center;
   margin: 30px 30px;
+}
+
+.img-card {
+  backface-visibility: hidden;
+  transition: all .5s;
+  transform-style: preserve-3d;
+  position: absolute;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.virada .back {
+  transform: rotateY(0deg);
+}
+
+.virada .front {
+  transform: rotateY(-180deg);
 }
