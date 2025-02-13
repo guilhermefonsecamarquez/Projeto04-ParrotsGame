@@ -11,6 +11,7 @@ let cards = document.querySelector('.container');
 let checkFlipCards = [];
 let countFlipCards = 0;
 let countNumbersCards = 0;
+let countClicksToFinishGame = 0;
 
 function checkNumCards() {
   if (numCards%2 === 0 && numCards <= 14 && numCards > 2) {
@@ -60,6 +61,7 @@ function flipCard(card) {
   card.classList.add('virada');
   checkFlipCards[countFlipCards] = card.parentNode.id;
   countFlipCards++;
+  countClicksToFinishGame++;
   checkFlippedNumbersCards();
 }
 
@@ -81,7 +83,10 @@ function checkFlippedNumbersCards() {
             </div>
           </div>`;
 
-           
+        countNumbersCards--;
+        if (countNumbersCards === 0) {
+          endGame();
+        }      
       }
     }
     countFlipCards = 0;
@@ -91,6 +96,10 @@ function checkFlippedNumbersCards() {
 function untapCards(card1, card2) {
   document.querySelector(`#${card1} .virada`).classList.remove('virada');
   document.querySelector(`#${card2} .virada`).classList.remove('virada');
+}
+
+function endGame() {
+  alert(`Você ganhou em ${countClicksToFinishGame} jogadas!`);
 }
 
 checkNumCards();
